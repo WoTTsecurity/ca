@@ -13,7 +13,7 @@ First, we need to fire up CFSSL so that we can generate the initial certificates
 ```
 $ cd agent
 $ docker build . -t wott-ca
-$ docker run --rm -ti  -v $(pwd)/../ssl:/ssl wott-ca bash
+$ docker run --rm -ti  -v $(dirname "$(pwd)")/ssl:/ssl wott-ca bash
 ```
 
 Once you're inside the container, we can start generating certificates:
@@ -22,5 +22,25 @@ Once you're inside the container, we can start generating certificates:
 $ cd /ssl
 $ cfssl gencert -initca /etc/cfssl/ca-csr.json | cfssljson -bare ca -
 $ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=/etc/cfssl/ca-config.json -profile=server /etc/cfssl/server.json | cfssljson -bare server
+$ rm *.csr
+$ exit
+```
 
+You have now generated the required components for the CA server and should have the following files in the `../ssl` directory:
+
+* ca-key.pem
+* ca.pem
+* server-key.pem
+* server.pem
+
+These are the keys for both the CA and for the server.
+
+To get launch the server, run:
+
+```
+$ docker run --rm -ti \
+    -v $(dirname "$(pwd)")/ssl/ca-key.pem:/opt/wott/certs/ca-key.pem:ro \
+    -v $(dirname "$(pwd)")/ssl/ca.pem:/opt/wott/certs/ca.pem:ro \
+    -p 80:8888 \
+    wott-ca
 ```
