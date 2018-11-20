@@ -11,8 +11,9 @@ There's a good [crash course](https://coreos.com/os/docs/latest/generate-self-si
 First, we need to fire up CFSSL so that we can generate the initial certificates, do this by running:
 
 ```
-$ cd agent
+$ cd ca
 $ docker build . -t wott-ca
+$ docker network create wott
 $ docker run --rm -ti  -v $(dirname "$(pwd)")/ssl:/ssl wott-ca bash
 ```
 
@@ -20,8 +21,15 @@ Once you're inside the container, we can start generating certificates:
 
 ```
 $ cd /ssl
-$ cfssl gencert -initca /etc/cfssl/ca-csr.json | cfssljson -bare ca -
-$ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=/etc/cfssl/ca-config.json -profile=server /etc/cfssl/server.json | cfssljson -bare server
+$ cfssl gencert \
+    -initca /etc/cfssl/ca-csr.json \
+    | cfssljson -bare ca -
+$ cfssl gencert \
+    -ca=ca.pem \
+    -ca-key=ca-key.pem \
+    -config=/etc/cfssl/ca-config.json \
+    -profile=server /etc/cfssl/server.json \
+    | cfssljson -bare server
 $ rm *.csr
 $ exit
 ```
@@ -39,6 +47,8 @@ To get launch the server, run:
 
 ```
 $ docker run --rm -ti \
+    --name wott-ca \
+    --net wott \
     -v $(dirname "$(pwd)")/ssl/ca-key.pem:/opt/wott/certs/ca-key.pem:ro \
     -v $(dirname "$(pwd)")/ssl/ca.pem:/opt/wott/certs/ca.pem:ro \
     -p 80:8888 \
