@@ -21,7 +21,6 @@ Once you're inside the container, we can start generating certificates:
 
 ```
 $ bootstrap.sh
-$ rm /ssl/*.csr
 $ exit
 ```
 
@@ -42,6 +41,6 @@ $ docker run --rm -ti \
     --net wott \
     -v $(dirname "$(pwd)")/ssl/ca-key.pem:/opt/wott/certs/ca-key.pem:ro \
     -v $(dirname "$(pwd)")/ssl/ca.pem:/opt/wott/certs/ca.pem:ro \
-    -p 80:8888 \
+    -p 8888:8888 \
     wott-ca
 ```

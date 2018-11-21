@@ -14,3 +14,5 @@ cfssl gencert \
     -config=/etc/cfssl/ca-config.json \
     -profile=server /etc/cfssl/server.json \
     | cfssljson -bare server
+
+rm *.csr
