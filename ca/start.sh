@@ -10,4 +10,4 @@ cfssl serve \
     -port=8888 \
     -address=0.0.0.0 \
     -ca=/opt/wott/certs/ca.pem \
-    -ca-key=/opt/wotts/certs/ca-key.pem
+    -ca-key=/opt/wott/certs/ca-key.pem
