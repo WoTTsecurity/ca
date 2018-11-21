@@ -20,17 +20,8 @@ $ docker run --rm -ti  -v $(dirname "$(pwd)")/ssl:/ssl wott-ca bash
 Once you're inside the container, we can start generating certificates:
 
 ```
-$ cd /ssl
-$ cfssl gencert \
-    -initca /etc/cfssl/ca-csr.json \
-    | cfssljson -bare ca -
-$ cfssl gencert \
-    -ca=ca.pem \
-    -ca-key=ca-key.pem \
-    -config=/etc/cfssl/ca-config.json \
-    -profile=server /etc/cfssl/server.json \
-    | cfssljson -bare server
-$ rm *.csr
+$ bootstrap.sh
+$ rm /ssl/*.csr
 $ exit
 ```
 

@@ -9,7 +9,7 @@
                 "usages": [
                     "signing",
                     "key encipherment",
-                    "client auth"
+                    "server auth"
                 ]
             },
             "client": {

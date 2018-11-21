@@ -15,4 +15,5 @@ COPY ca-*  /etc/cfssl/
 COPY server.json /etc/cfssl/
 
 COPY start.sh /start.sh
+COPY bootstrap.sh /usr/local/bin/
 CMD /start.sh
