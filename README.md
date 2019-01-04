@@ -46,3 +46,10 @@ $ docker run --rm -ti \
     -p 8888:8888 \
     wott-ca
 ```
+
+
+Once deployed on the remote server you can use the same tool to generate the cert required for renewal-api.wott.io
+
+```
+$ cfssl gencert -ca /opt/wott/certs/intermediate_ca.pem -ca-key /opt/wott/certs/intermediate_ca-key.pem renewal-api-csr.json
+```
