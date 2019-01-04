@@ -1,25 +1,22 @@
 {
-    "signing": {
-        "default": {
-            "expiry": "168h"
-        },
-        "profiles": {
-            "server": {
-                "expiry": "2160h",
-                "usages": [
-                    "signing",
-                    "key encipherment",
-                    "server auth"
-                ]
-            },
-            "client": {
-                "expiry": "2160h",
-                "usages": [
-                    "signing",
-                    "key encipherment",
-                    "client auth"
-                ]
-            }
-        }
+  "signing": {
+    "profiles": {
+      "CA": {
+        "usages": [
+          "cert sign"
+        ],
+        "expiry": "8760h"
+      }
+    },
+    "default": {
+      "usages": [
+        "digital signature",
+        "signing",
+        "client auth",
+        "server auth"
+      ],
+      "expiry": "168h"
     }
+  }
 }
+

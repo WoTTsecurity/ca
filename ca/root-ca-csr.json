@@ -1,0 +1,17 @@
+{
+    "CN": "root-ca.wott.local",
+    "key": {
+        "algo": "ecdsa",
+        "size": 384
+    },
+    "names": [
+        {
+            "C": "UK",
+            "L": "London",
+            "O": "Web of Trusted Things"
+        }
+    ],
+    "ca": {
+        "expiry": "17520h"
+}
+}

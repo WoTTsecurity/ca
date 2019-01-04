@@ -9,5 +9,6 @@ IFS=$'\n\t'
 cfssl serve \
     -port=8888 \
     -address=0.0.0.0 \
-    -ca=/opt/wott/certs/ca.pem \
-    -ca-key=/opt/wott/certs/ca-key.pem
+    -config=/etc/cfssl/ca-config.json \
+    -ca=/opt/wott/certs/intermediate_ca.pem \
+    -ca-key=/opt/wott/certs/intermediate_ca-key.pem
