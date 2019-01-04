@@ -33,9 +33,10 @@ You have now generated the required components for the CA server and should have
 
 It critical that you keep `root_ca*.pem` offline and not on any remote server as this allows the owner to generate any subsequent keys.
 
-These are the keys for both the CA and for the server.
+You now need to copy the `intermediate_ca*.pem` files to the remote server to setup ca0.wott.local.
 
 To get launch the server, run:
+
 ```
 $ docker run --rm -ti \
     --name wott-ca \
@@ -44,13 +45,4 @@ $ docker run --rm -ti \
     -v $(dirname "$(pwd)")/ssl/intermediate_ca.pem:/opt/wott/certs/intermediate_ca.pem:ro \
     -p 8888:8888 \
     wott-ca
-```
-
-## Pushing image
-
-```
-$ export GCEPROJECT=MyProject
-$ cd ca
-$ docker build . -t "gcr.io/$GCEPROJECT/wott-ca":$(git rev-parse --short HEAD)
-$ docker push "gcr.io/$GCEPROJECT/wott-ca":$(git rev-parse --short HEAD)                                                                                                          ✭
 ```

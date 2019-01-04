@@ -5,8 +5,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+LOG_LEVEL=${LOG_LEVEL:-1}
 
 cfssl serve \
+    -loglevel=${LOG_LEVEL} \
     -port=8888 \
     -address=0.0.0.0 \
     -config=/etc/cfssl/ca-config.json \
