@@ -29,7 +29,7 @@ $ openssl rsa -in tmp.key -check
 [...]
 ```
 
-We should only be allowed to sign certificates matching the RegEx `[0-9a-f]{32}\.d\.wott\.local` so let's try one that shouldn't work too:
+We should only be allowed to sign certificates matches `*.d.wott.local` or `*.c.wott.local`so let's try one that shouldn't work too:
 
 
 ```
