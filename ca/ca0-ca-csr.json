@@ -2,7 +2,7 @@
     "CN": "ca0-ca.wott.local",
     "key": {
         "algo": "ecdsa",
-        "size": 384
+        "size": 256
     },
     "names": [
         {
