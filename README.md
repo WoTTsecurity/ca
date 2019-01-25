@@ -48,8 +48,8 @@ $ docker run --rm -ti \
 ```
 
 
-Once deployed on the remote server you can use the same tool to generate the cert required for renewal-api.wott.io
+Once deployed on the remote server you can use the same tool to generate the cert required for mtls.wott.io
 
 ```
-$ cfssl gencert -ca /opt/wott/certs/intermediate_ca.pem -ca-key /opt/wott/certs/intermediate_ca-key.pem renewal-api-csr.json
+$ cfssl gencert -ca /opt/wott/certs/intermediate_ca.pem -ca-key /opt/wott/certs/intermediate_ca-key.pem mtls-csr.json | cfssljson -bare mtls
 ```

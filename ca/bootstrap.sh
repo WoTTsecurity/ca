@@ -16,6 +16,7 @@ fi
 if [ ! -f /ssl/intermediate_ca.pem ]; then
     cfssl gencert -initca /csr/ca0-ca-csr.json | cfssljson -bare intermediate_ca
     cfssl sign -ca root_ca.pem -ca-key root_ca-key.pem -config /csr/root-to-immediate-ca.json intermediate_ca.csr | cfssljson -bare intermediate_ca
+    mkbundle root_ca.pem intermediate_ca.pem
 fi
 
 rm *.csr

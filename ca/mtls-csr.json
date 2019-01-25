@@ -1,7 +1,8 @@
 {
+    "CN": "mtls.wott.io",
     "hosts": [
-        "renewal-api.wott.io",
-        "renewal-api.s.wott.local"
+        "mtls.wott.io",
+        "mtls.s.wott.local"
     ],
     "key": {
         "algo": "ecdsa",
@@ -11,7 +12,7 @@
         {
             "C": "UK",
             "L": "London",
-            "O": "Web of Trusted Things"
+            "O": "Web of Trusted Things, Ltd"
         }
     ]
 }

@@ -9,7 +9,7 @@
       }
     },
     "default": {
-      "name_whitelist": "^.*\\.(c|d)\\.wott\\.local$",
+      "name_whitelist": "^.*\\.(c|d)\\.(wott|wott-stage|wott-dev)\\.local$",
       "usages": [
         "digital signature",
         "signing",

@@ -2,7 +2,7 @@
     "CN": "root-ca.wott.local",
     "key": {
         "algo": "ecdsa",
-        "size": 384
+        "size": 256
     },
     "names": [
         {
@@ -12,6 +12,6 @@
         }
     ],
     "ca": {
-        "expiry": "17520h"
-}
+        "expiry": "262800h"
+    }
 }
