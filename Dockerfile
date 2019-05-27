@@ -11,8 +11,8 @@ RUN git clone https://github.com/cloudflare/cfssl.git $GOPATH/src/github.com/clo
     cp -v bin/* /usr/local/bin/
 
 RUN mkdir -p /etc/cfssl /opt/wott/certs
-COPY ca-config.json /etc/cfssl/
+COPY ca/ca-config.json /etc/cfssl/
 
-COPY start.sh /start.sh
-COPY bootstrap.sh /usr/local/bin/
+COPY ca/start.sh /start.sh
+COPY ca/bootstrap.sh /usr/local/bin/
 CMD /start.sh
