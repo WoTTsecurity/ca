@@ -1,0 +1,22 @@
+version: '3'
+services:
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ./ssl/intermediate_ca-key.pem:/opt/wott/certs/intermediate_ca-key.pem:ro
+      - ./ssl/intermediate_ca.pem:/opt/wott/certs/intermediate_ca.pem:ro
+    ports:
+      - '8888:8888'
+    hostname: wott-ca
+    networks:
+      default:
+        aliases:
+          - wott-ca
+
+networks:
+  default:
+    external:
+      name: wott
