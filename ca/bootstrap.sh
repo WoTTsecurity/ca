@@ -19,4 +19,4 @@ if [ ! -f /ssl/intermediate_ca.pem ]; then
     mkbundle root_ca.pem intermediate_ca.pem
 fi
 
-rm *.csr
+rm -f *.csr

@@ -6,8 +6,11 @@ services:
       dockerfile: Dockerfile
     tty: true
     volumes:
-      - ./ssl/intermediate_ca-key.pem:/opt/wott/certs/intermediate_ca-key.pem:ro
-      - ./ssl/intermediate_ca.pem:/opt/wott/certs/intermediate_ca.pem:ro
+      - ./ssl:/ssl
+      - ./ca:/csr
+      - ./ssl:/opt/wott/certs:ro
+    command: |
+      bash -c "bootstrap.sh && /start.sh"
     ports:
       - '8888:8888'
     hostname: wott-ca
