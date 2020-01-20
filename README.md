@@ -53,3 +53,31 @@ Once deployed on the remote server you can use the same tool to generate the cer
 ```
 $ cfssl gencert -ca /opt/wott/certs/intermediate_ca.pem -ca-key /opt/wott/certs/intermediate_ca-key.pem mtls-csr.json | cfssljson -bare mtls
 ```
+
+
+## Rotating the intermediate certificate
+
+On the air gapped machine with the root certificates, take the following steps:
+
+* Launch into the container from the boostrapping step
+* Rename the old intermediate and add `.bak` or similar
+* Re-run `bootstrap.sh` and you should receive your new intermediate files
+
+In a secure fashion (e.g. using an encrypted flash drive), copy the intermediate files along with `cert-bundle.crt`.
+
+* Copy the intermediate files to the CA server, and restart the server
+* Append the new intermediate certificate from `cert-bundle.crt` at the tail of [api repo](https://github.com/WoTTsecurity/api/blob/master/backend/files/cert-bundle.crt)
+* Rotate the secret in the Nginx Ingress controller:
+
+```
+$ kubectl delete secret generic wott-ca -n api
+$ kubectl create secret generic wott-ca -n api --from-file=ca.crt=backend/files/cert-bundle.crt
+```
+
+### Troubleshooting
+
+To verify that everything worked, make sure you spin up a new node and then verify that the certificate checks out both from a *new* and old node.
+
+```
+$ openssl verify -verbose -CAfile new-ca.crt  client.crt
+```
